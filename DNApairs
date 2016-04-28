@@ -1,0 +1,51 @@
+function dnaPairing(str) {
+
+   
+  var dna = [];
+  str = str.split('');
+  var a = "A";
+  var t = "T";
+  var c = "C";
+  var g = "G";
+  
+  /* For every letter in the array str,
+  concat its match to make a pair, based 
+  on the DNA sequence */
+  for (var i in str){ 
+    if (str[i] == a){
+      str[i] = str[i] + t;
+      dna.push(str[i]);
+      
+    } else if (str[i] == c){
+      str[i] = str[i] + g;
+      dna.push(str[i]);
+          
+    } else if (str[i] == t){
+      str[i] = str[i] + a;    
+      dna.push(str[i]);
+      
+    } else if (str[i] == g){
+      str[i] = str[i] + c;
+       dna.push(str[i]);
+    }
+  }
+  
+  //Convert it into a string
+  dna = dna.join('');
+  
+  //Reconstruct it in pairs using RegEx
+  dna = dna.match(/.{1,2}/g);
+ 
+  /*Every pair in the sequence, make it 
+  an array in order to have a 2d overall layout*/
+  for (var item in dna){
+     dna[item] = dna[item].split('');
+  }
+
+  return dna;
+}
+
+
+
+
+dnaPairing("GCG");
