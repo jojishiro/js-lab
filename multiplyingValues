@@ -1,0 +1,31 @@
+
+function multiplyNums(arr) {
+  var product = 1;
+
+  //Flatten the arrays
+  var newTab = [];
+  for (var i=0; i < arr.length; i++) {
+      for (var j = 0; j < arr.length; j++){
+         newTab.push(arr[i][j]);
+      }
+    }
+  
+  //Filter the non-null values
+  newTab = newTab.filter(function(val){
+    if (val === null)
+      return false;
+    else 
+      return val;
+  });
+  
+  //Calculate product
+  for (var item = 0; item < newTab.length; item++){
+    product = product * newTab[item];
+  }
+  return product;
+}
+
+
+// Modify values below to test your code
+multiplyNums([[1,2],[3,4],[5,6,7]]);
+
