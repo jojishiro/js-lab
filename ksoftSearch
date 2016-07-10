@@ -1,0 +1,104 @@
+//HTML
+<link href='https://fonts.googleapis.com/css?family=Walter+Turncoat' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Frijole' rel='stylesheet' type='text/css'>
+<div class='container'>
+  <center>
+    <h1 style='font-size:48px;font-family: "Frijole", cursive;'><span class='glyphicon glyphicon-search'></span> KSoftSearch</h1>
+  
+  
+  <div class="form-group">
+  <input type="text" class="form-control" id="data" />
+  </div>
+  
+       
+    
+    <div class='btn btn-group'><a href='#' id='btnC' class='btn btn-default'>Search</a>
+        
+ <a href='https://en.wikipedia.org/wiki/Special:Random' id='btnD' class='btn btn-default' target='_blank'>Random</a>
+  </div>
+  
+    <hr>
+    <div id='out'>
+    </div>
+    
+</div>
+//----------------------------------------------
+
+
+
+
+//CSS
+.container {margin-top:200px;}
+
+body {background-image:url('https://s-media-cache-ak0.pinimg.com/736x/ab/eb/67/abeb67c4844b35b1dd13db1944bd5e7e.jpg');}
+
+
+
+#data {
+  height:50px;
+  padding-left:40px;
+  padding-right:40px;
+  font-size:25px;
+  border:3px solid maroon;
+  font-family: 'Walter Turncoat', cursive;
+  box-shadow:0px 5px 20px maroon;
+}
+
+#btnC {
+  width:100%;
+  height:40px;
+  margin-top:10px;
+  line-height:40xp;
+  font-family: 'Walter Turncoat', cursive;
+  font-size:20px;
+  box-shadow:0px 5px 20px maroon;
+}
+
+.myClass {
+  box-shadow:0px 5px 20px maroon;
+  font-family: 'Walter Turncoat', cursive;
+  background-image:url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/contemporary_china.png");
+}
+
+#titles {
+  color:marron;
+  font-family: 'Walter Turncoat', cursive;
+  
+}
+#btnD {
+  width:100%;
+  height:40px;
+  font-family: 'Walter Turncoat', cursive;
+  margin-top:10px;
+  line-height:40xp;
+  font-size:20px;
+  box-shadow:0px 5px 20px maroon;
+}
+//----------------------------------------------
+
+
+
+
+//JavaScript
+$(function(){
+  $('#btnC').on("click", function(){
+     var searchData = $('#data').val();
+       var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search="+ searchData +"&format=json&callback=?";
+     
+    $.ajax({
+			url: url,
+			type: 'GET',
+			contentType: "application/json; charset=utf-8",
+			async: false,
+        	dataType: "json",
+        	success: function(data, status, jqXHR) {
+        		//console.log(data);
+        		$("#output").html();
+        		for(var i=0;i<data[1].length;i++){
+        			$("#out").prepend("<div><div class='jumbotron myClass'><h2 style='color:maroon;'>" + data[1][i]+ "</h2>" + "<p>" + data[2][i] + "</p><h6><a href="+data[3][i]+" target='_blank' class='btn btn-default'>Open in Wiki</a></h6></div></div>");
+        		}
+        	}
+		})
+  });
+});
+//----------------------------------------------
