@@ -1,0 +1,127 @@
+//HTML
+<link href='https://fonts.googleapis.com/css?family=Merienda' rel='stylesheet' type='text/css'>
+<center>
+  <div class='interface'>
+    <font class='header'>FlexyCalc</font>
+    <input type='text' class='display' id='expr'></input>
+    <table>
+        <tr>
+          <td><button class='buttons'  onclick='addToInput(1)'>1</button></td>
+          <td><button class='buttons'  onclick='addToInput(2)'>2</button></td>
+          <td><button class='buttons'  onclick='addToInput(3)'>3</button></td>       
+          <td><button class='buttons'  onclick='reset()'>C</button></td>
+        </tr>
+      
+      <tr>
+          <td><button class='buttons'  onclick='addToInput(4)'>4</button></td>
+          <td><button class='buttons'  onclick='addToInput(5)'>5</button></td>
+          <td><button class='buttons'  onclick='addToInput(6)'>6</button></td>
+          <td><button class='buttons'  onclick='addToInput("-")'>-</button></td>
+        </tr>
+      
+      <tr>
+          <td><button class='buttons'  onclick='addToInput(7)'>7</button></td>
+          <td><button class='buttons'  onclick='addToInput(8)'>8</button></td>
+          <td><button class='buttons'  onclick='addToInput(9)'>9</button></td>
+          <td><button class='buttons'  onclick='addToInput("*")'>x</button></td>
+        </tr>
+      
+      <tr>
+         <td><button class='buttons' onclick='addToInput(0)'>0</button></td>
+        <td><button class='buttons' onclick='evalExp();'>=</button></td>
+        <td><button class='buttons' onclick='addToInput("/")'>/</button></td>
+        <td><button class='buttons' onclick='addToInput("+")'>+</button></td>
+      </tr>
+      
+       <tr>
+         <td></td>
+         <td><button class='buttons' onclick='addToInput(".")'>.</button></td>
+         <td><button class='buttons'  onclick='addToInput("%")'>%</button></td>
+         <td></td>
+      </tr>
+      
+      
+    </table>   
+  </div>
+  <a href='#' style='text-decoration:none;font-family: "Merienda", cursive;'><h6>Designed by @ksoftware</h6></a>
+</center>
+<!---------------------------------------------------------------------------
+
+
+
+//CSS
+.buttons {
+  width:100px;
+  height:100px;
+  font-family: 'Merienda', cursive;
+  background-color:#6A5A5B;
+  font-size:30px;
+  color:#C1D3C8;
+}
+
+.buttons:hover {
+  width:100px;
+  height:100px;
+  background-color:#C1D3C8;
+  box-shadow:0px 10px 25px #F5F4F4;
+  font-family: 'Merienda', cursive;
+  font-size:30px;
+  color:#6A5A5B;
+}
+
+.display {
+  width:400px;
+  height:50px;
+  line-height:50px;
+  color:#484043;
+  font-size:40px;
+  font-family: 'Merienda', cursive;
+  margin-bottom:20px;
+  margin-top:20px;
+}
+
+.interface {
+  margin-top:50px;
+  width:430px;
+  box-shadow:0px 10px 20px #6A5A5B;
+  border-radius:10px;
+  padding:20px;
+  border-left:10px solid #6E6568;
+  font-family: 'Merienda', cursive;
+  border-right:10px solid #6E6568;
+  border-top:2px solid #6E6568;
+}
+
+.header {
+   color:#C1D3C8;
+   font-size:45px;
+   font-family: 'Merienda', cursive;
+ 
+}
+body {background-color:#484043;}
+
+h6 {color:grey;font-size:16px;}
+<!---------------------------------------------------------------------------
+
+
+
+//JavaScript
+function addToInput(number){
+    document.getElementById("expr").value += number;
+    
+}
+
+function reset(){
+  document.getElementById("expr").value = '';
+}
+
+function evalExp(){
+  var exp = document.getElementById("expr").value;
+  if (exp === ''){
+    alert("Field cannot be empty.");
+  } else {
+  console.log(eval(exp));
+  var result = eval(exp);
+  document.getElementById("expr").value = result;
+  }
+}
