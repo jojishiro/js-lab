@@ -1,0 +1,112 @@
+//HTML
+<link href='https://fonts.googleapis.com/css?family=Patrick+Hand+SC' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Eagle+Lake:400' rel='stylesheet' type='text/css'>
+<div class='container' style='margin-top:100px;'>
+  <div class='row'>
+    <div class='col-md-1'></div>
+    <div class='col-md-10 text-center'>
+      <blockquote><p id='show'>Everything is theoretically impossible, until it is done. -Robert A. Heinlein</p></blockquote>
+    </div>
+    <div class='col-md-1'></div>
+  </div>
+    
+  <div class='row'>
+      <div class='col-md-12'><center>
+        <div href='#' id='getQ' class='myButton btn btn-default'>Get Quote</div>
+        </center>
+      </div>
+  </div>
+  <div class='row' style='margin-top:10px;'>
+      <div class='col-md-12'>
+        <center><div id='tweet' class='myButton btn btn-default'>Try your luck! </div></center>
+  </div>
+
+</div>
+//-----------------------------------------------
+
+
+
+//CSS
+#show {
+  width:100%;
+  background-color:white;
+  padding:40px;
+  box-shadow:0px 20px 30px black;
+  font-size:20px;
+  font-family: 'Patrick Hand SC', cursive;
+}
+
+
+
+body {
+  background-color:#2F4F4F;
+}
+
+
+
+.myButton {
+  width:150px;
+  display:block;
+  color:white;
+  background-color:#222;
+  line-height:50px;
+  border-radius:30px 0 30px;
+  box-shadow:0px 10px 25px grey;
+  font-family: 'Eagle Lake', cursive;
+}
+//-----------------------------------------------
+
+
+
+//JavaScript
+//Generating a random number with give range
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+//Getting the quote from an array
+function getQuote(){
+  var show = "";
+  var q = ["Beneath every cynic there's a frustrated romantic. -Peter Bishop",
+          "Maybe some Valium would help. -Walter Bishop",
+          "If the facts don't fit the theory, change the facts. -A.Einstein",
+          "Science is organized knowledge. -H.Spencer",
+          "Science without religion is lame, religion without science is blind. -A.Einstein",
+          "If we knew what it was, we wouldn't call it research -A.Einstein",
+           "Somewhere, something incredible is waiting to be known. -Carl Sagan",
+          "Time is a drug. Too much of it kills you. -Terry Pratchett",
+          "Everything must be made as simple as possible. But not simpler. -A.Einstein",
+          "If I have seen further it is by standing on the shoulders of Giants. -Isaac Newton",
+          "Tto make an apple pie from scratch, you must first invent the universe. -Carl Sagan", 
+           "Science flies you to the moon. Religion flies you into buildings. -Victor Stenger", 
+           "I don't want to believe. I want to know. -Carl Sagan",
+           "To invent, you need a good imagination and a pile of junk. -T.Edison",
+           "Millions saw the apple fall, Newton was the only one who asked why?-Bernard Baruch"];
+  show += q[getRandomInt(0,q.length-1)];
+  return show;
+  
+}
+
+function jumpToUrl(url){
+  window.open(url, 'Share', 'width=440, height=350, toolbar=0, scrollbars=1 ,location=0 ,statusbar=0,menubar=0, resizable=0');
+}
+
+
+//Events & jQuery
+$(function(){ 
+  
+  $("#getQ").on("click",function(){
+    var quote = getQuote();
+    $("#show").html(quote);
+  });
+  
+  $("#tweet").on("click", function(){
+    var quote = getQuote();
+    var url = 'https://twitter.com/intent/tweet?hashtags=BishopQuotesCollection&text=';
+    url += quote;
+    window.jumpToUrl(url);
+  });
+  
+
+});
+//-----------------------------------------------
