@@ -1,0 +1,124 @@
+//HTML
+<link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+
+<div class='container'>
+  <div class='row text-center'>
+    <div class='col-md-12 text-left'><h1><span class='glyphicon glyphicon-console'></span> KSoft <b>TwitchAPI</b> Streamers</h1><hr>
+    <div id='output' ></div>
+    </div>
+  </div> 
+</div>
+//-------------------------------------------------------
+
+
+
+//CSS
+@import url(https://fonts.googleapis.com/css?family=Handlee);
+body {
+  background-image:url('http://www.photos-public-domain.com/wp-content/uploads/2011/02/black-vertical-siding-texture.jpg');
+}
+h1 {font-family: 'Poiret One', cursive;color:white;}
+
+.myClass {
+  border-left:10px solid #aaa;
+  border-right:10px solid #aaa;
+  font-family: 'Rock Salt', cursive;
+  border-top:5px solid #eee;
+  border-bottom:5px solid #eee;
+  margin-top:10px;
+  background-color:#ffe;
+  padding:20px;
+  box-shadow:0px 0px 10px #777;
+}
+
+.myClass:hover {
+  border-left:10px solid #0a0;
+  border-right:10px solid #0a0;
+  border-top:1px solid #eee;
+  font-family: 'Rock Salt', cursive;
+  border-bottom:1px solid #eee;
+  margin-top:10px;
+  background-color:#ada;
+  box-shadow:0px 5px 20px solid #aaa;
+  padding:20px;
+}
+
+img {
+  border:2px solid #aaa;
+  border-radius:100%;
+  width:50%;
+  height:50%;
+}
+
+.desc {
+  font-family: 'Handlee', cursive;
+  font-size:20px;
+}
+
+.gameS {
+  font-family: 'Handlee', cursive;
+  font-size:20px;
+  color:maroon;
+}
+
+.follows {
+  font-family: 'Handlee', cursive;
+  font-size:22px;
+}
+//-------------------------------------------------------
+
+
+
+
+//JavaScript
+$(document).ready(function(){
+    var users= ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
+   //var link = 'https://api.twitch.tv/kraken/streams/freecodecamp?callback=?';
+  
+   function makeGodLikeLinks(list){
+      var newList = [];
+      for (var item = 0; item < list.length; item++){
+         newList[item] = 'https://api.twitch.tv/kraken/streams/'+list[item];
+      }
+     return newList;
+   }
+     
+  var outPutList = makeGodLikeLinks(users);
+  
+  
+   for (var item = 0; item < users.length; item++){
+     var link = outPutList[item];
+     //JSon stuff
+     $.getJSON(link, function(data){
+       var newLink = data._links.channel;
+        $.getJSON(newLink, function(data){
+           var games = data.game;
+           if (games === null){
+             games = "Not playing at the moment.";
+           } else {
+             games = data.game;
+           }
+           var status = data.status;
+           if (status === null){
+             status = "<a href='#' id='showStats' class='btn btn-danger'><span class='glyphicon glyphicon-ban-circle'></span> Offline</a>";
+             var desc = data.status;
+             if (desc === null)
+               desc = "Not available";        
+           } else {
+             status = "<a href='#' id='showStats' class='btn btn-success'><span class='glyphicon glyphicon-facetime-video'></span> Online</a>";
+             var desc = data.status;
+             if (desc === null)
+               desc = "@No message available";           
+           }
+                    
+           $("#output").prepend("<div class='row myClass'><div class='col-md-3 text-center'><center><img class='img-responsive' src="+data.logo+" /><font class='follows'>Subscribers: <br> "+data.followers+"</font></center></div><div class='col-md-4'><h2>"+data.display_name+"</h2></div></p><div class='col-md-3'><p class='desc'>"+desc+"</p>"+status+"</div><div class='col-md-2'><h5 class='gameS'>Current App<hr>"+games+"</h5></div></div></div>");    
+           
+          
+         });
+      });
+   
+   }
+  
+});
+//-------------------------------------------------------
