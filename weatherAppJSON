@@ -1,0 +1,133 @@
+//HTML
+<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
+
+<div class='container'>
+   <div class='jumbotron myJumbo'>
+     <div class='row'>
+         <div class='col-md-12 text-left'>
+ 
+           <span class='glyphicon glyphicon-globe'></span> <span><i>Current Location:</i>&nbsp  <span id='loc'></span> </span> 
+           
+          <br> <span class='glyphicon glyphicon-barcode'></span> <span><i>Current <b>Temp</b>:</i> &nbsp  <span id='temp'></span> </span> 
+         
+       <br>   <span class='glyphicon glyphicon-leaf'></span> <span><i>Current <b>Wind</b>:</i>&nbsp  
+             <span id='wind'></span> </span> 
+           
+        <br>   <span class='glyphicon glyphicon-send'></span> <span><i>Weather <b>Report</b>:</i>&nbsp  
+             <span id='weather'></span> </span> 
+       </div>
+     </div>
+  </div>
+  <center><h4 id='copy'><a href='http://kSoftware.eu' target='_blank'>&copy KSoftware.eu</a> George Zafiris</h4></center>
+</div>
+//-----------------------------------------------------
+
+
+
+
+//CSS
+.myJumbo {
+  margin-top:50px;
+  width:450px;
+  margin-left:auto;
+  color:#b68;
+  font-size:22px;
+  margin-right:auto;
+  border-bottom:5px solid #555;
+  border-top:5px solid #ddd;
+  border-left:5px solid #ccc;
+  border-right:5px solid #777;
+  
+  background-color:#eee;
+  box-shadow:0px 0px 25px #b68;
+  font-family: 'Orbitron', sans-serif;
+}
+
+
+
+body {
+
+  background-image: url('http://www.ios9cydia.com/wp-content/uploads/os-x-10.11-wallpaper.jpg');
+  background-position:center;
+  
+}
+
+#temp {
+  color:black;
+  font-size:25px;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+ 
+}
+
+a {
+  color:black;
+   text-decoration:none;
+}
+
+a:hover {
+  color:white;
+  text-decoration:none;
+}
+#loc {
+  color:brown;
+  font-size:25px;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+
+}
+
+#wind {
+  color:black;
+  font-size:25px;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+
+}
+
+#weather {
+  color:black;
+  font-size:25px;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+ 
+}
+
+#copy {
+  color:maroon;
+  font-size:22px;
+  font-family: 'Yanone Kaffeesatz',sans-serif;
+  text-shadow:0px 0px 15px solid #fff;
+ 
+}
+//-----------------------------------------------------
+
+
+
+
+//JavaScript
+
+function display(l,tmp,w,r){
+ 
+  document.getElementById('loc').innerHTML = l;
+  document.getElementById('temp').innerHTML = tmp;
+  document.getElementById('wind').innerHTML = w;
+  document.getElementById('weather').innerHTML = r;
+}
+  
+
+ var object = new XMLHttpRequest();
+    object.open("GET", 'http://api.wunderground.com/api/daab2a691aa37a49/conditions/q/GR/Athens.json', false);
+    object.send(null);
+
+    var w = JSON.parse(object.response);
+
+    var loc = "<p>" + w.current_observation.observation_location.full + "</p>";
+
+    var temp = "<p>" + w.current_observation.temperature_string + "</p>";
+    
+    var wind = "<p>" + w.current_observation.wind_string + "</p>";
+  
+    var weather = "<p>" + w.current_observation.weather + "</p>";
+
+ display(loc, temp, wind, weather);
+//-----------------------------------------------------
+
+
