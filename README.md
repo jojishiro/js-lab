@@ -1,4 +1,5 @@
-# Javascript Lab
+# JavaScript Lab
 <hr>
-Projects in JavaScript + jQuery
+<h4>Projects in JavaScript - jQuery - HTML + CSS</h4>
+  
 
