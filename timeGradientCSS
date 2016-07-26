@@ -1,0 +1,54 @@
+
+/*
+  Here's a small script which changes the background
+  gradient according 24 hour time. Feel free to use it
+  or to modify it.
+  
+*/
+
+
+$(document).ready(function(){
+			var obj = new Date();
+			var hrs = obj.getHours();
+			if (hrs >= 0 && hrs <= 3){
+				$('body').css({"background":"linear-gradient(#1D4350,#A43931)"});
+				$('.container').css({"color":"white"});
+				$('.jumbotron').css({"color":"white","background":"linear-gradient(#1D4350,#A43931)"});
+				
+			} else if (hrs >= 3 && hrs <= 6){// 3 6
+				$('body').css({"background":"linear-gradient(purple,green)"});
+				$('.container').css({"color":"white"});
+				$('.jumbotron').css({"color":"white","background":"linear-gradient(purple,green)"});
+				
+			} else if (hrs >= 6 && hrs <= 9){
+				$('body').css({"background":"linear-gradient(#3D7EAA,#FFE47A)"});
+				$('.container').css({"color":"white"});
+				$('.jumbotron').css({"color":"white","background":"linear-gradient(#3D7EAA,#FFE47A)"});
+				
+			} else if (hrs >= 9 && hrs <= 12){
+				$('body').css({"background":"linear-gradient(white,orange)"});
+				$('.container').css({"color":"black"});
+				$('.jumbotron').css({"color":"black","background":"linear-gradient(white,orange)"});
+				
+			} else if (hrs >= 12 && hrs <= 15){
+				$('body').css({"background":"linear-gradient(brown,orange)"});
+				$('.container').css({"color":"white"});
+				$('.jumbotron').css({"color":"white","background":"linear-gradient(brown,orange)"});
+				
+			} else if (hrs >= 15 && hrs <= 18){
+				$('body').css({"background":"linear-gradient(orange,purple)"});
+				$('.container').css({"color":"white"});
+				$('.jumbotron').css({"color":"white","background":"linear-gradient(orange,purple)"});
+				
+			} else if (hrs >= 18 && hrs <= 21){
+				$('body').css({"background":"linear-gradient(purple,maroon)"});
+				$('.container').css({"color":"white"});
+				$('.jumbotron').css({"color":"white","background":"linear-gradient(purple,maroon)"});
+				
+			} else if (hrs >= 21 && hrs <= 3){
+				$('body').css({"background":"linear-gradient(#1D4350,#A43931)"});
+				$('.container').css({"color":"white"});
+				$('.jumbotron').css({"color":"white","background":"linear-gradient(#1D4350,#A43931)"});
+			}
+			
+});
